@@ -1,8 +1,12 @@
 plugins {
+	id 'java'
 	id 'org.jetbrains.kotlin.jvm' version '1.9.25'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.9.25'
 	id 'org.springframework.boot' version '3.4.4'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.jetbrains.kotlin.plugin.lombok' version '2.1.20'
+	id 'io.freefair.lombok' version '8.13'
+	id "org.jetbrains.kotlin.kapt" version "2.1.20"
 }
 
 group = 'com.github.acs'
@@ -12,6 +16,14 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
+}
+
+kapt {
+	keepJavacAnnotationProcessors = true
+}
+
+kotlinLombok {
+	lombokConfigurationFile file("lombok.config")
 }
 
 configurations {
@@ -25,12 +37,15 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.apache.camel.springboot:camel-spring-boot-starter:4.11.0'
-	implementation 'org.apache.camel.springboot:camel-debezium-oracle-starter:4.11.0'
-	implementation 'org.apache.camel:camel-componentdsl:4.11.0'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
 	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'io.debezium:debezium-api:3.1.1.Final'
+	implementation 'io.debezium:debezium-embedded:3.1.1.Final'
+	implementation 'io.debezium:debezium-connector-oracle:3.1.1.Final'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -40,6 +55,8 @@ dependencies {
 	testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 kotlin {

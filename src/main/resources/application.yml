@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: Database update workflow
+
+debezium:
+  connector:
+    topic-prefix: cdc_oracle_
+    name: oracle-debezium-connector
+    clazz: io.debezium.connector.oracle.OracleConnector
+    custom:
+      database.hostname: localhost
+      database.port: 1521
+      database.user: root
+      database.password: root
+      database.dbname: oracle-database
+      database.server.id: 1
+      database.server.name: oracle-server
+      database.history: io.debezium.relational.history.FileDatabaseHistory
+      database.history.file.filename: /tmp/oracle/database-history.dat
+      database.include.list: ${debezium.connector.custom.database.dbname}
+      schema.include.list: my-schema
+      table.include.list: my-table
+      include.schema.changes: false
+      offset.storage: org.apache.kafka.connect.storage.FileOffsetBackingStore
+      offset.storage.file.filename: /tmp/oracle/offsets.dat
+      offset.flush.interval.ms: 60000
