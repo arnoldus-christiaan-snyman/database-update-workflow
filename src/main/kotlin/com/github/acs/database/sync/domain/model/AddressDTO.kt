@@ -1,4 +1,4 @@
-package com.github.acs.database.sync.domain.model.address
+package com.github.acs.database.sync.domain.model
 
 data class AddressDTO (
     val streetName: String,

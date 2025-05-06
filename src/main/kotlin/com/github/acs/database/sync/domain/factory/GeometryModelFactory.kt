@@ -1,6 +1,6 @@
 package com.github.acs.database.sync.domain.factory
 
-import com.github.acs.database.sync.domain.model.address.GeometryDTO
+import com.github.acs.database.sync.domain.model.GeometryDTO
 
 class GeometryModelFactory : ModelFactory<GeometryDTO> {
     override fun createEntity(entity: GeometryDTO): GeometryDTO {

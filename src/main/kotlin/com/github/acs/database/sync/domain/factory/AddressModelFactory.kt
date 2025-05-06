@@ -1,6 +1,6 @@
 package com.github.acs.database.sync.domain.factory
 
-import com.github.acs.database.sync.domain.model.address.AddressDTO
+import com.github.acs.database.sync.domain.model.AddressDTO
 
 class AddressModelFactory : ModelFactory<AddressDTO> {
     override fun createEntity(entity: AddressDTO): AddressDTO {

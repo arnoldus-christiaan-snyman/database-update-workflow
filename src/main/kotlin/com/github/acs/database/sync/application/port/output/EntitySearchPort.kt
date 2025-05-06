@@ -4,8 +4,8 @@ interface EntitySearchPort<T> {
 
     fun findEntityById(id: Long): T?
 
-    fun findEntityByField(fieldName: String, fieldValue: String): T?
+    fun findEntitiesByField(fieldName: String, fieldValue: Any): Set<T>?
 
-    fun findAllEntities(): List<T>
+    fun findAllEntities(): Set<T>
 
 }

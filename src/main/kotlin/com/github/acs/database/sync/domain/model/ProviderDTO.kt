@@ -1,6 +1,5 @@
 package com.github.acs.database.sync.domain.model
 
-import com.github.acs.database.sync.domain.model.address.AddressDTO
 import java.math.BigDecimal
 import java.util.Currency
 

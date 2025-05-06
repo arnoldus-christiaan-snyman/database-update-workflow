@@ -4,7 +4,6 @@ import com.github.acs.database.sync.application.port.input.DatabaseEventHandler
 import com.github.acs.database.sync.application.port.output.ChangePublisherPort
 import com.github.acs.database.sync.domain.container.DatabaseChangeContainer
 import com.github.acs.database.sync.domain.container.DatabaseChangeContainerBuilder
-import com.github.acs.database.sync.domain.factory.ModelFactoryFinder
 import io.debezium.data.Envelope
 import io.debezium.data.Envelope.FieldName.*
 import io.debezium.embedded.Connect
@@ -17,6 +16,7 @@ import jakarta.transaction.Transactional
 import org.apache.kafka.connect.data.Struct
 import org.apache.kafka.connect.source.SourceRecord
 import org.springframework.stereotype.Service
+import java.util.SequencedMap
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -26,12 +26,18 @@ typealias DebeziumConfiguration = io.debezium.config.Configuration
 class DatabaseEventHandlingService(
     private val changePublisherPort: ChangePublisherPort,
     private val debeziumConnector: DebeziumConfiguration,
-) : DatabaseEventHandler<RecordChangeEvent<SourceRecord>> {
+) : DatabaseEventHandler<SequencedMap<String, Any>> {
 
     private val log = org.slf4j.LoggerFactory.getLogger(DatabaseEventHandlingService::class.java)
 
     private lateinit var debeziumEngine: DebeziumEngine<RecordChangeEvent<SourceRecord>>
     private lateinit var executor: ExecutorService
+
+    @Transactional
+    override fun handleChangeEvent(changeEvent: SequencedMap<String, Any>) {
+        TODO("Not yet implemented")
+    }
+
 
     @Transactional
     override fun handleChangeEvent(changeEvent: RecordChangeEvent<SourceRecord>) {
@@ -96,5 +102,7 @@ class DatabaseEventHandlingService(
         this.debeziumEngine.close()
         this.executor.shutdown()
     }
+
+
 
 }

@@ -1,6 +1,6 @@
 package com.github.acs.database.sync.infrastructure.persistence
 
-import com.github.acs.database.sync.domain.model.address.AddressType
+import com.github.acs.database.sync.domain.model.AddressType
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
