@@ -4,7 +4,7 @@ import com.github.acs.database.sync.application.port.output.EntityDeletePort
 import com.github.acs.database.sync.application.port.output.EntityPersistencePort
 import com.github.acs.database.sync.application.port.output.EntitySearchPort
 import com.github.acs.database.sync.application.port.output.EntityUpdatePort
-import com.github.acs.database.sync.infrastructure.persistence.Customer
+import com.github.acs.database.sync.infrastructure.persistence.CustomerEntity
 import com.github.acs.database.sync.infrastructure.repository.CustomerRepository
 import org.springframework.stereotype.Component
 
@@ -12,36 +12,36 @@ import org.springframework.stereotype.Component
 class CustomerPersistenceAdapter(
     val customerRepository: CustomerRepository
 ) :
-    EntityPersistencePort<Customer>,
-    EntitySearchPort<Customer>,
-    EntityUpdatePort<Customer>,
-    EntityDeletePort<Customer>
+    EntityPersistencePort<CustomerEntity>,
+    EntitySearchPort<CustomerEntity>,
+    EntityUpdatePort<CustomerEntity>,
+    EntityDeletePort<CustomerEntity>
 {
 
-    override fun saveEntity(entity: Customer): Customer {
+    override fun saveEntity(entity: CustomerEntity): CustomerEntity {
         return this.customerRepository.save(entity)
     }
 
-    override fun findEntityById(id: Long): Customer? {
+    override fun findEntityById(id: Long): CustomerEntity? {
         return this.customerRepository.findById(id).get()
     }
 
     override fun findEntitiesByField(
         fieldName: String,
         fieldValue: Any
-    ): Set<Customer>? {
+    ): Set<CustomerEntity>? {
         return emptySet()
     }
 
-    override fun findAllEntities(): Set<Customer> {
+    override fun findAllEntities(): Set<CustomerEntity> {
         return this.customerRepository.findAll().toSet()
     }
 
-    override fun updateEntity(entity: Customer): Customer {
+    override fun updateEntity(entity: CustomerEntity): CustomerEntity {
         return this.customerRepository.save(entity)
     }
 
-    override fun deleteEntity(entity: Customer): Unit {
+    override fun deleteEntity(entity: CustomerEntity): Unit {
         this.customerRepository.delete(entity)
     }
 }

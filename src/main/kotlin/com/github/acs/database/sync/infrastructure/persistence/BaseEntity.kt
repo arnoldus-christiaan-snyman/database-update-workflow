@@ -7,21 +7,24 @@ import java.sql.Timestamp
 
 @MappedSuperclass
 abstract class BaseEntity(
+    @get:Column(nullable = false)
     var isActive: Boolean = true,
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @get:Id
+    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
+    @get:Column(nullable = false, updatable = false)
     var id: Long? = null,
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @get:CreationTimestamp
+    @get:Column(nullable = false, updatable = false)
     var createdAt: Timestamp? = null,
 
-    @UpdateTimestamp
-    @Column(nullable = false)
+    @get:UpdateTimestamp
+    @get:Column(nullable = false)
     var updatedAt: Timestamp? = null,
 
-    @Version
+    @get:Version
+    @get:Column(nullable = false)
     var version: Long? = null,
 
 )
