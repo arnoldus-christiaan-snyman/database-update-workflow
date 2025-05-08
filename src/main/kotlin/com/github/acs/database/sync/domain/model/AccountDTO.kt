@@ -3,7 +3,7 @@ package com.github.acs.database.sync.domain.model
 import com.github.acs.database.sync.domain.model.meter.MeterDTO
 
 data class AccountDTO(
-    val accountNumber: Number,
+    val accountNumber: String,
     val domainType: DomainType,
     val meters: Set<MeterDTO> = emptySet(),
     val customer: CustomerDTO,

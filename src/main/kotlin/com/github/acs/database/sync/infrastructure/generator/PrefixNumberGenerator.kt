@@ -10,6 +10,7 @@ abstract class PrefixNumberGenerator: SequenceStyleGenerator() {
     }
 
     protected abstract fun getPrefix(): String
+
     protected fun getNumberLength(): Int? = DEFAULT_NUMBER_LENGTH
 
     protected fun generateCustomNumber(

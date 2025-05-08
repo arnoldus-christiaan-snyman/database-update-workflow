@@ -3,6 +3,7 @@ package com.github.acs.database.sync.domain.model
 import java.time.LocalDate
 
 data class CustomerDTO(
+    val customerNumber: String,
     val firstName: String,
     val lastName: String,
     val gender: Gender,

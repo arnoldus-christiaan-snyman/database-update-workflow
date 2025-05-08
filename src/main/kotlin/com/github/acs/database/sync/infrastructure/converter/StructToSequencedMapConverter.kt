@@ -21,7 +21,7 @@ class StructToSequencedMapConverter {
                     map[field.name()] = value
                 }
             }
-            return map;
+            return map
         }
     }
 
